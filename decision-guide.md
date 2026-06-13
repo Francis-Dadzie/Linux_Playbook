@@ -1,6 +1,6 @@
-# "If You're Trying To..." — A Sysadmin Decision Guide
+# If You're Trying To...
 
-A scenario-first companion to [commands.md](./commands.md). Starts from the **problem** and points you to the right tool — with a one-line reason why that tool and not another.
+A scenario-first companion to [commands.md](./commands.md). Starts from the **problem** and points you to the right tool.
 
 Use `Ctrl+F` / browser search for keywords like "slow," "disk," "port," "memory," etc.
 
