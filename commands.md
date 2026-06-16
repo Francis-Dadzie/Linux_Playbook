@@ -151,15 +151,15 @@ The first commands to run on any unfamiliar box.
 | `sed` | Stream editor for find/replace | `sed -i 's/old/new/g' file` |
 | `awk` | Pattern scanning & field processing | `awk -F: '{print $1}' /etc/passwd` |
 | `cut` | Extract columns/fields | `cut -d: -f1 /etc/passwd` |
-| `sort` / `uniq` | Sort and deduplicate lines | `sort file | uniq -c` |
+| `sort` / `uniq` | Sort and deduplicate lines | `sort file \| uniq -c` |
 | `wc` | Count lines, words, bytes | `wc -l file` |
 | `diff` / `vimdiff` | Compare files | `diff file1 file2` |
 | `tr` | Translate/delete characters | `tr 'a-z' 'A-Z' < file` |
-| `tee` | Write stdin to file(s) and stdout | `command | tee -a log.txt` |
-| `column` | Format text into columns | `cat /etc/passwd | column -t -s:` |
-| `xargs` | Build commands from stdin | `find . -name "*.log" | xargs rm` |
+| `tee` | Write stdin to file(s) and stdout | `command \| tee -a log.txt` |
+| `column` | Format text into columns | `cat /etc/passwd \| column -t -s:` |
+| `xargs` | Build commands from stdin | `find . -name "*.log" \| xargs rm` |
 | `vim` / `nano` / `emacs` | Text editors | `vim file` |
-| `jq` | JSON processor | `curl ... | jq '.data[0]'` |
+| `jq` | JSON processor | `curl ... \| jq '.data[0]'` |
 
 ---
 
@@ -200,7 +200,7 @@ The first commands to run on any unfamiliar box.
 | `ldd` | Show shared library dependencies | `ldd /usr/bin/bash` |
 | `pmap` | Show process memory map | `pmap -x PID` |
 | `slabtop` | Kernel slab cache usage | `slabtop` |
-| `dmesg` | Kernel ring buffer messages | `dmesg -T | tail -50` |
+| `dmesg` | Kernel ring buffer messages | `dmesg -T \| tail -50` |
 | `sosreport` | Collect a full diagnostic bundle (RHEL) | `sosreport` |
 | `perf` | CPU profiling | `perf top` |
 | `numastat` | NUMA memory statistics | `numastat` |
@@ -219,7 +219,7 @@ The first commands to run on any unfamiliar box.
 | `dnf search` | Search for a package | `dnf search nginx` |
 | `dnf repolist` | List enabled repositories | `dnf repolist` |
 | `dnf history` | Show transaction history | `dnf history list` |
-| `rpm -qa` | List all installed packages | `rpm -qa | grep kernel` |
+| `rpm -qa` | List all installed packages | `rpm -qa \| grep kernel` |
 | `rpm -qi` | Show package info | `rpm -qi httpd` |
 | `rpm -ql` | List files owned by a package | `rpm -ql httpd` |
 | `rpm -qf` | Find which package owns a file | `rpm -qf /usr/bin/vim` |
@@ -235,7 +235,7 @@ The first commands to run on any unfamiliar box.
 | `apt remove` / `purge` | Remove a package (with/without config) | `apt purge nginx` |
 | `apt autoremove` | Remove unused dependencies | `apt autoremove` |
 | `apt search` | Search for a package | `apt search nginx` |
-| `dpkg -l` | List installed packages | `dpkg -l | grep nginx` |
+| `dpkg -l` | List installed packages | `dpkg -l \| grep nginx` |
 | `dpkg -L` | List files owned by a package | `dpkg -L nginx` |
 | `dpkg -S` | Find which package owns a file | `dpkg -S /usr/bin/vim` |
 | `apt-cache policy` | Show available versions/priority | `apt-cache policy nginx` |
@@ -345,7 +345,7 @@ The first commands to run on any unfamiliar box.
 | `xz` / `unxz` | Compress/decompress (.xz) | `xz file` |
 | `zip` / `unzip` | Zip archives | `zip -r archive.zip dir/` |
 | `7z` | 7-Zip archiver | `7z a archive.7z dir/` |
-| `cpio` | Archive via cpio format | `find . | cpio -ov > archive.cpio` |
+| `cpio` | Archive via cpio format | `find . \| cpio -ov > archive.cpio` |
 | `rsync` | Efficient file sync (local/remote) | `rsync -avz --delete src/ dest/` |
 | `dd` | Low-level copy / disk imaging | `dd if=/dev/sda of=disk.img bs=4M status=progress` |
 | `restic` | Modern encrypted backup tool | `restic -r /repo backup /data` |
@@ -465,7 +465,7 @@ Newer tools that have become common on modern servers and dev workstations — u
 | `zoxide` | `cd` | Smarter directory jumping | `z project-name` |
 | `httpie` | `curl` | Human-friendly HTTP client | `http GET example.com` |
 | `yq` | — | YAML processor (like `jq` for YAML) | `yq '.spec.replicas' deploy.yaml` |
-| `delta` | `diff` | Syntax-highlighted diffs | `git diff | delta` |
+| `delta` | `diff` | Syntax-highlighted diffs | `git diff \| delta` |
 
 ---
 
@@ -493,20 +493,20 @@ Practical combinations for everyday troubleshooting.
 
 | Goal | Command |
 |------|---------|
-| Find the 10 largest files under a path | `find /var -type f -exec du -h {} + | sort -rh | head -10` |
-| Find the 10 largest directories | `du -h --max-depth=1 /var | sort -rh | head -10` |
-| Show top 10 memory-hungry processes | `ps aux --sort=-%mem | head -11` |
-| Show top 10 CPU-hungry processes | `ps aux --sort=-%cpu | head -11` |
+| Find the 10 largest files under a path | `find /var -type f -exec du -h {} + \| sort -rh \| head -10` |
+| Find the 10 largest directories | `du -h --max-depth=1 /var \| sort -rh \| head -10` |
+| Show top 10 memory-hungry processes | `ps aux --sort=-%mem \| head -11` |
+| Show top 10 CPU-hungry processes | `ps aux --sort=-%cpu \| head -11` |
 | List all listening ports with owning process | `ss -tulnp` |
-| Watch a log file with highlighting | `tail -f /var/log/syslog | grep --color=auto -i error` |
-| Count files in a directory | `find . -maxdepth 1 -type f | wc -l` |
+| Watch a log file with highlighting | `tail -f /var/log/syslog \| grep --color=auto -i error` |
+| Count files in a directory | `find . -maxdepth 1 -type f \| wc -l` |
 | Find files modified in the last 24 hours | `find /etc -mtime -1 -type f` |
 | Find world-writable files | `find / -xdev -type f -perm -0002` |
 | Find SUID/SGID binaries | `find / -xdev -perm /6000 -type f` |
 | Kill all processes matching a name | `pkill -f process_name` |
 | Show disk usage by filesystem, human-readable | `df -hT` |
 | Test if a remote port is open | `nc -zv host 443` |
-| Show all environment variables | `printenv | sort` |
+| Show all environment variables | `printenv \| sort` |
 | Check which package owns a binary (RPM/DEB) | `rpm -qf $(which cmd)` / `dpkg -S $(which cmd)` |
 | Tail the journal for a service, last hour | `journalctl -u nginx --since "1 hour ago"` |
 | Show effective sudo rules for current user | `sudo -l` |
@@ -515,7 +515,3 @@ Practical combinations for everyday troubleshooting.
 | Recursively chmod only files | `find /path -type f -exec chmod 640 {} +` |
 
 ---
-
-## License
-
-MIT — see [LICENSE](LICENSE).
