@@ -6,7 +6,7 @@ Useful for daily ops work, troubleshooting, and certification prep (RHCSA/LFCS).
 
 ## Table of Contents
 
-- [Quick System Overview](quick-system-overview)
+- [Quick System Overview](#quick-system-overview)
 - [Hardware & Devices](hardware--devices)
 - [Users, Groups & Authentication](users-groups--authentication)
 - [Files & Directories](files--directories)
