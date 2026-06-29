@@ -7,7 +7,7 @@
 #
 # Requires: ~/.curlEmail containing:
 #   ADMIN_EMAIL="admin@company.com"
-#   SMTP_USER="you@icloud.com"
+#   SMTP_USER="you@company.com"
 #   SMTP_PASS="your-app-specific-password"
 #   SMTP_SERVER="smtps://smtp.mail.me.com:465"
 #
